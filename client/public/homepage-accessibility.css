@@ -1,0 +1,11 @@
+/* Small accessibility additions; original page layout and component styles remain untouched. */
+.breakdance a:focus-visible,
+.breakdance button:focus-visible {
+  outline: 2px solid #0d5901;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .un-logo-bar__marquee-content { animation-play-state: paused !important; }
+}

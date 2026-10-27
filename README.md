@@ -1,27 +1,22 @@
-# ACG Reference Replica
+# ACG — source-faithful homepage replica
 
-A responsive, single-page React recreation of the [ACG Human Capital Solutions homepage](https://n2.apx.cx/acg/). Its modular TSX components, vanilla-CSS design system and authentic locally served images are organized so the frontend works without an application server or database.
+This project reproduces the [ACG landing page/homepage](https://n2.apx.cx/acg/) with its original public frontend markup, responsive CSS, photos/logos, fonts and motion settings. It is not a redesigned approximation.
 
-## Run locally
+## Run and build
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev:static
 ```
 
-The site serves on port 3000. Build a production static bundle with `pnpm build:static`; output is `dist/public/`.
+The development page uses port 3000. `pnpm build:static` produces `dist/public/`. No WordPress server, backend, database, credentials or remote reference assets are required. `pnpm check` runs TypeScript diagnostics.
 
-## Source structure
+## Source organization
 
-- `client/src/pages/Home.tsx` assembles the one-page section order and accessible reel-preview dialog.
-- `client/src/components/acg/Header.tsx` provides the responsive desktop/mobile menu.
-- `client/src/components/acg/Hero.tsx` contains the opening copy, proof points, image and continuous client-mark rail.
-- `client/src/components/acg/CompanySections.tsx` contains About, mission/vision/values, Expertise, Services, Affiliations and the ACG values composition.
-- `client/src/components/acg/Testimonials.tsx` implements the looping, auto-advancing quote carousel; `FAQ.tsx` and `Accordion.tsx` implement contact details and the five-question FAQ with semantic animated controls.
-- `client/src/components/acg/Reveal.tsx` provides reusable staggered, scroll-triggered entrance motion.
-- `client/src/components/acg/Footer.tsx` provides the source-matched footer; `Insights.tsx` retains the source editorial cards (the reference CSS hides that section at the measured desktop view).
-- `client/src/index.css` defines font imports, colors and base type; `client/src/styles/landing.css` contains responsive page styling and interaction states; `client/public/assets/` holds the reference ACG images.
+`client/index.html` contains the original homepage. Local assets under `client/public/reference/` are separated into `styles/`, `scripts/`, `images/` and `fonts/`. The manifest records source-to-local file mappings. Former inline CSS is linked separately; the original 78 initializer blocks are kept in order in `scripts/homepage-init.js`.
 
-All consultation actions use the source phone link (`tel:63286520211`). The source exposes a reel poster but no playable video asset, so “Watch Reels” opens an accessible poster preview and a consultation action.
+The original scripts own the menu, reveal/parallax effects, counters, three Swipers, FAQs and accordions. The 72-image client rail retains its 150px boxes, 120px gaps and 130-second loop. `client/src/homepage.ts` does not rewrite the DOM or override controls. `client/public/homepage-accessibility.css` adds keyboard-focus and reduced-motion support without changing normal page layout.
 
-For the portable, frontend-only copy, use the standalone source ZIP attached with this project handoff.
+The downloadable standalone archive contains only active HTML/CSS/JS/media and minimal Vite setup. Run `npm install`, `npm run dev`, `npm run typecheck` or `npm run build` there. `scripts/sync-reference.py` records the optional repeatable mirror process, requiring Python, requests and BeautifulSoup.
+
+Placeholder source buttons—including Watch Reels, Gallery, legal/article and href-less consultation buttons—retain their original behavior. The replica does not invent footage, pages or destinations. Original telephone anchors remain functional; the public email is decoded locally and its `mailtto:` typo is corrected to `mailto:`. Nonvisual WordPress emoji/prefetch/discovery metadata is omitted, runtime settings use local paths, and social-card imagery points to the local hero asset.
