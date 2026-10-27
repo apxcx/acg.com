@@ -1,14 +1,27 @@
 # ACG Reference Replica
 
-React / Express / tRPC / Drizzle starter, adapted from the Sandbox web-db-user template.
+A responsive, single-page React recreation of the [ACG Human Capital Solutions homepage](https://n2.apx.cx/acg/). Its modular TSX components, vanilla-CSS design system and authentic locally served images are organized so the frontend works without an application server or database.
 
-- `pnpm dev`: development server; honors `PORT` (default 3000).
-- `pnpm build` / `pnpm start`: build and serve `dist/index.js` and `dist/public/`.
-- `pnpm db:migrate`: apply checked-in migrations. `pnpm db:push`: generate and apply new schema changes.
-- `pnpm check` / `pnpm test`: types and application tests.
+## Run locally
 
-Start with the Webdev skill's default-template guide. Platform login, storage, payments and service contracts live in its shared references; read the relevant capability before extending its helper.
+```sh
+pnpm install --frozen-lockfile
+pnpm dev:static
+```
 
-`server/_core/publicConfig.ts` exposes only named public runtime values. Private keys stay server-side. The platform serves managed `/manus-storage/` assets; the application does not register a second proxy.
+The site serves on port 3000. Build a production static bundle with `pnpm build:static`; output is `dist/public/`.
 
-Platform configuration is readable and editable through `webdev.config`. Default settings are initial values, not enforced constraints. The agent may modify the files, commands and configuration or follow the flexible guide for another stack.
+## Source structure
+
+- `client/src/pages/Home.tsx` assembles the one-page section order and accessible reel-preview dialog.
+- `client/src/components/acg/Header.tsx` provides the responsive desktop/mobile menu.
+- `client/src/components/acg/Hero.tsx` contains the opening copy, proof points, image and continuous client-mark rail.
+- `client/src/components/acg/CompanySections.tsx` contains About, mission/vision/values, Expertise, Services, Affiliations and the ACG values composition.
+- `client/src/components/acg/Testimonials.tsx` implements the looping, auto-advancing quote carousel; `FAQ.tsx` and `Accordion.tsx` implement contact details and the five-question FAQ with semantic animated controls.
+- `client/src/components/acg/Reveal.tsx` provides reusable staggered, scroll-triggered entrance motion.
+- `client/src/components/acg/Footer.tsx` provides the source-matched footer; `Insights.tsx` retains the source editorial cards (the reference CSS hides that section at the measured desktop view).
+- `client/src/index.css` defines font imports, colors and base type; `client/src/styles/landing.css` contains responsive page styling and interaction states; `client/public/assets/` holds the reference ACG images.
+
+All consultation actions use the source phone link (`tel:63286520211`). The source exposes a reel poster but no playable video asset, so “Watch Reels” opens an accessible poster preview and a consultation action.
+
+For the portable, frontend-only copy, use the standalone source ZIP attached with this project handoff.
